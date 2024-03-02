@@ -1,0 +1,16 @@
+server:
+  port: 8888
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/Module5Project?createDatabaseIfNotExist=true
+    username: root
+    password: S0meth!ng976431
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  jooq:
+    sql-dialect: org.hibernate.dialect.MySQLDialect
+expired.time: 3153600000
+secret.key: Maiyonaisu1102
