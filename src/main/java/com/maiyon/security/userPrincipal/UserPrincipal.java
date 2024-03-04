@@ -1,4 +1,4 @@
-package com.maiyon.security.user_principal;
+package com.maiyon.security.userPrincipal;
 
 import com.maiyon.model.entity.User;
 import com.maiyon.model.enums.ActiveStatus;

@@ -37,7 +37,7 @@ public class Category {
     @ColumnDefault(value = "false")
     @Column(name = "status", columnDefinition = "BIT(1)")
     private ActiveStatus status;
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "category")
     @JsonIgnore
     private List<Product> products;
 }

@@ -1,6 +1,6 @@
 package com.maiyon.security.jwt;
 
-import com.maiyon.security.user_principal.UserDetailService;
+import com.maiyon.security.userPrincipal.UserDetailService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

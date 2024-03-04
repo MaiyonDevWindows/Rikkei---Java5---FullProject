@@ -1,6 +1,7 @@
 package com.maiyon.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.maiyon.model.enums.ActiveStatus;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
@@ -8,6 +9,7 @@ import lombok.*;
 import org.hibernate.annotations.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -43,10 +45,14 @@ public class Product {
     @ColumnDefault(value = "false")
     @Column(name = "status", columnDefinition = "BIT(1)")
     private ActiveStatus status;
-    // * Category - Product: 1 - N.
+    // * Product - Category: N - 1.
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Category category;
+    // * Product - ShoppingCart: 1 - N.
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+    private List<ShoppingCart> shoppingCarts;
     @PrePersist
     private void prePersist(){
         if(this.sku == null){

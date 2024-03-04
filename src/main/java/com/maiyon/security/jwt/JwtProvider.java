@@ -1,6 +1,6 @@
 package com.maiyon.security.jwt;
 
-import com.maiyon.security.user_principal.UserPrincipal;
+import com.maiyon.security.userPrincipal.UserPrincipal;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

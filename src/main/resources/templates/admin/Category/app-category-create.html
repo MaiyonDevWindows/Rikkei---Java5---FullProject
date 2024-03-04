@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-scompiler-id="0" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charSet="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>Maiyon eCommerce Admin Dashboard</title>
+    <th:block th:insert = "~{/admin/Fragments/Styles/css-fragment :: link}"></th:block>
+    <th:block th:insert = "~{/admin/Fragments/Scripts/js-header-fragment :: script}"></th:block>
+</head>
+<body>
+<div class="sa-app sa-app--desktop-sidebar-shown sa-app--mobile-sidebar-hidden sa-app--toolbar-fixed">
+    <th:block th:replace="~{admin/Fragments/admin-fragment :: sidebarFragment}"></th:block>
+    <div th:fragment="mainFragment" class="sa-app__content">
+        <th:block th:replace="~{admin/Fragments/admin-fragment :: toolbarFragment}"></th:block>
+        <th:block th:replace="~{admin/Fragments/Components/category-create-component :: categoryCreateFragment}"></th:block>
+        <th:block th:replace="~{admin/Fragments/admin-fragment :: toastFragment}"></th:block>
+        <th:block th:insert = "~{admin/Fragments/Scripts/js-footer-fragment :: script}"></th:block>
+    </div>
+</div>
+</body>
+</html>

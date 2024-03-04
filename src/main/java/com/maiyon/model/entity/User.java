@@ -1,6 +1,7 @@
 package com.maiyon.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.maiyon.model.enums.ActiveStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -53,4 +55,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
+    // * User - ShoppingCart: 1 - N.
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    List<ShoppingCart> shoppingCarts;
+    // * User - Invoice: 1 - N.
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    List<Invoice> invoiceList;
 }
