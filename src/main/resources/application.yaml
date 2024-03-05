@@ -12,5 +12,10 @@ spring:
     show-sql: true
   jooq:
     sql-dialect: org.hibernate.dialect.MySQLDialect
+    servlet:
+      multipart:
+        max-file-size: 15MB
+        max-request-size: 30MB
 expired.time: 3153600000
 secret.key: Maiyonaisu1102
+path-upload: D:\\code\\Module5\\src\\main\\resources\\static\\uploads\\
