@@ -1,5 +1,6 @@
 package com.maiyon.config;
 
+import com.maiyon.model.enums.RoleName;
 import com.maiyon.security.jwt.AccessDenied;
 import com.maiyon.security.jwt.JwtEntryPoint;
 import com.maiyon.security.jwt.JwtTokenFilter;
@@ -15,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -31,21 +33,26 @@ public class WebSecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.
-            csrf(AbstractHttpConfigurer::disable).
-            authenticationProvider(authenticationProvider()).
-            authorizeHttpRequests(
-                (auth)->auth
-//                    .requestMatchers("/v1/admin/**").hasAuthority(RoleName.ROLE_ADMIN.name())
-//                    .requestMatchers("/v1/user/**").hasAuthority(RoleName.ROLE_USER.name())
-                    .requestMatchers("/**").permitAll()
-                    .anyRequest().authenticated()
-            ).
-            exceptionHandling(
-                (auth)->auth.authenticationEntryPoint(jwtEntryPoint)
-                    .accessDeniedHandler(accessDenied)
-            ).
-            addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class).
-            build();
+                csrf(AbstractHttpConfigurer::disable).
+                authenticationProvider(authenticationProvider()).
+                authorizeHttpRequests(
+                        (auth)->auth
+                                .requestMatchers("/*").permitAll()
+                                .requestMatchers("/product/**").permitAll()
+                                .requestMatchers("/admin").hasAuthority(String.valueOf(RoleName.ROLE_ADMIN))
+                                .requestMatchers("/admin/**").hasAuthority(String.valueOf(RoleName.ROLE_ADMIN))
+                                .requestMatchers("/user/**").hasAuthority(String.valueOf(RoleName.ROLE_USER))
+                                .anyRequest().authenticated()
+                )
+                .formLogin(login -> login
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .successHandler(roleBasedAuthenticationSuccessHandler())
+                )
+                .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login"))
+                .build();
     }
     @Bean
     PasswordEncoder passwordEncoder(){
@@ -57,5 +64,9 @@ public class WebSecurityConfig {
         authenticationProvider.setUserDetailsService(userDetailService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
+    }
+    @Bean
+    public AuthenticationSuccessHandler roleBasedAuthenticationSuccessHandler() {
+        return new RoleBasedAuthenticationSuccessHandler();
     }
 }

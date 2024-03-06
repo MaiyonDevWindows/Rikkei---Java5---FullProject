@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminPageController {
     @RequestMapping
     public String adminDashboard(){
-        return "/admin/Home/index";
+        return "/admin/Pages/app-admin";
     }
     @GetMapping("/page/faq")
     public String faqPage(){
-        return "/admin/Page/page-faq";
+        return "/admin/Pages/page-faq";
     }
     @GetMapping("/page/term")
     public String termPage(){
-        return "/admin/Page/page-terms";
+        return "/admin/Pages/page-terms";
     }
     @GetMapping("/page/help")
     public String helpCenterPage(){
-        return "/admin/Page/page-help-center";
+        return "/admin/Pages/page-help-center";
     }
     @GetMapping("/page/404")
     public String notFoundPage(){
-        return "/admin/Page/page-404";
+        return "/admin/Pages/page-404";
     }
 }

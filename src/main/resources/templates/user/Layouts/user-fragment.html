@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head th:fragment="headFragment">
+    <title>Shop home</title>
+    <meta name='platform' content='bigcommerce.stencil' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <th:block th:insert = "~{/user/Fragments/Styles/css-fragment :: link}"></th:block>
+    <th:block th:insert = "~{/user/Fragments/Scripts/js-header-fragment :: script}"></th:block>
+</head>
+<body class="banners-effect10 default--style ">
+    <div class="header logo-content--left header-mobile" th:fragment="headerFragment">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-top-inner">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 ">
+                        </div>
+                        <div class="col-xl-7 col-lg-5  text-right">
+                            <nav class="navUser">
+                                <ul class="navUser-section navUser--gift">
+                                    <li class="navUser-item">
+                                        <a class="navUser-action has-dropdown" href="#" data-dropdown="accountSelection"
+                                            aria-controls="accountSelection" aria-expanded="false">
+                                            My Account
+                                            <i class="fa fa-caret-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu" id="accountSelection" data-dropdown-content
+                                            aria-hidden="true" tabindex="-1">
+                                            <li class="dropdown-menu-item"><a href="/login">Login</a></li>
+                                            <li class="dropdown-menu-item"><a
+                                                    href="/register">Register</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="navUser-item checkout">
+                                        <a class="navUser-action" href="cart.html"
+                                            title="Click here to proceed to checkout">
+                                            Check Out</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stickey-header" data-sticky-header>
+            <div class="header-center">
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-xl-2 col-lg-3 col-8 logo-container">
+                            <a href="/user/home" class="header-logo">
+                                <div class="header-logo-image-container">
+                                    <img class="header-logo-image"
+                                        src="https://cdn11.bigcommerce.com/s-reovc816ii/images/stencil/original/logo_1554282166__55823.original.png"
+                                        alt="Supermarket - Home 1" title="Supermarket - Home 1">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sb-quickSearch col-xl-7 col-lg-6 col-4" aria-hidden="true" tabindex="-1"
+                            data-prevent-quick-search-close>
+                            <form class="sb-searchpro" action="https://sb-supermarket.mybigcommerce.com/search.php">
+                                <fieldset class="form-fieldset">
+                                    <div class="input-group">
+                                        <input class="form-control form-input" data-search-quick name="search_query"
+                                            data-error-message="Search field cannot be empty."
+                                            placeholder="Search the store" autocomplete="off">
+                                        <div class="input-group-append">
+                                            <button class="button button--primary" type="submit"><i
+                                                    class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="dropdown dropdown--quickSearch">
+                                    <section class="quickSearchResults " data-bind="html: results"></section>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="header-bottom__cart navUser col-xl-3 col-lg-3 ">
+                            <a class="cart-button cart-button--primary" data-cart-preview
+                                data-dropdown="cart-preview-dropdown" data-options="align:left" href="cart.html">
+                                <i class="fa fa-shopping-bag"></i>
+                                <p class="text-shopping-cart">My Cart</p>
+                                <span class="text-countPill cart-quantity">0 item -</span>
+                                <span class="cart-subtotal">$0.00</span>
+                            </a>
+                            <div class="dropdown-menu" id="cart-preview-dropdown"
+                                data-dropdown-contentaria-hidden="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="header-bottom-left col-xxl-2 col-xl-3 col-lg-3 col-md-3 col-3">
+                        </div>
+                        <div class="header-bottom-right col-xxl-7 col-xl-7  col-lg-9 col-md-9 col-9">
+                        </div>
+                        <div class="col-xxl-3 col-xl-3  d-lg-none d-xl-block">
+                            <ul class="minilink-header list-inline">
+                                <li class="list-login list-inline-item"><i class="fa fa-lock"></i> <a
+                                        href="/login">Login</a>
+                                    <span>or</span>
+                                </li>
+                                <li class="regisred list-inline-item"><a
+                                        href="register">Register</a>
+                                </li>
+                                <li class="list-phone list-inline-item"><i class="fa fa-phone-square"></i> Phone:
+                                    <strong>(+84) 22206919</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal" class="modal" data-reveal data-prevent-quick-search-close>
+        <a href="#" class="modal-close" aria-label="Close" role="button">
+            <span aria-hidden="true">&#215;</span>
+        </a>
+        <div class="modal-content"></div>
+        <div class="loadingOverlay"></div>
+    </div>
+    <div class="main-body clearfix sidebar--left">
+        <div class="container">
+            <div class="row page">
+                <th:block th:insert="~{user/Fragments/Components/shop-categories-component :: sideCategoriesFragment}"></th:block>
+                <th:block th:insert = "~{/user/Fragments/Components/shop-products-component :: shopProductsFragment}"></th:block>
+            </div>
+        </div>
+    </div>
+    <div class="footer " role="contentinfo" th:fragment="footerFragment">
+        <section class="footer-top">
+            <div class="container">
+                <div class="footer-top-wapper">
+                    <div class="row">
+                        <div class="footer-socials col-lg-5 col-sm-12">
+                        </div>
+                        <div class="footer-newsletter  col-lg-7  col-sm-12 ">
+                            <h5 class="footer-info-heading">Sign up for newsletter </h5>
+                            <p>Trade Alert - Delivering the latest product trends and industry news straight to your
+                                inbox.</p>
+                            <form class="form" action="https://sb-supermarket.mybigcommerce.com/subscribe.php"
+                                method="post">
+                                <fieldset class="form-fieldset">
+                                    <input type="hidden" name="action" value="subscribe">
+                                    <input type="hidden" name="nl_first_name" value="bc">
+                                    <input type="hidden" name="check" value="1">
+                                    <div class="form-field">
+                                        <label class="form-label is-srOnly" for="nl_email">Email Address</label>
+                                        <div class="form-prefixPostfix wrap">
+                                            <input class="form-input" id="nl_email" name="nl_email" type="email"
+                                                value="" placeholder="Your email address">
+                                            <input class="button button--primary form-prefixPostfix-button--postfix"
+                                                type="submit" value="Subscribe">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="footer-center ">
+            <div class="container">
+                <div class="row">
+                    <article class="col-lg-3 col-sm-12 footer-info collapsed-block" data-section-type="storeInfo">
+                        <div class="logo-footer">
+                            <div class="module sb-banner sb-banner--logofooter ">
+                                <div class="block-content clearfix d-flex flex-row">
+                                    <div class="banners info-">
+                                        <div class="banner-figure">
+                                            <a href="index.html">
+                                                <img class="img-fluid"
+                                                    src="https://cdn11.bigcommerce.com/s-reovc816ii/content/site/home1/logo-footer.png"
+                                                    alt="suppermarket" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-info-list">
+                            <address><i class="fa fa-map-marker"></i> Addresses : Hà Nội, Việt Nam
+                            </address>
+                            <address><i class="fa fa-phone"></i> Phone: <strong>(+84) 22206919</strong></address>
+                            <address>
+                                <i class="fa fa-envelope"></i>
+                                Email Address: <a href="mailto:contact@smartaddons.com">maiyonaisu1102@gmail.com</a>
+                            </address>
+                        </div>
+                    </article>
+                    <article class="collapsed-block col-lg col-sm-12 collapsed-block"
+                        data-section-type="footer-webPages">
+                        <div class="widget-inner">
+                            <h5 class="footer-info-heading">
+                                About
+                                <span class="expander"><i class="fa fa-chevron-circle-down"></i></span>
+                            </h5>
+                            <ul class="footer-info-list">
+                                <li class="list-item">
+                                    <a href="#">About Us</a>
+                                </li>
+                                <li class="list-item">
+                                    <a href="#">Corporate Responsibility</a>
+                                </li>
+                                <li class="list-item">
+                                    <a href="#">Investor Relations</a>
+                                </li>
+                                <li class="list-item">
+                                    <a href="#">Careers</a>
+                                </li>
+                                <li class="list-item">
+                                    <a href="#">Services</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="col-lg col-sm-12 collapsed-block" data-section-type="footer-webPages">
+                        <div class="widget-inner">
+                            <h5 class="footer-info-heading">
+                                Information
+                                <span class="expander"><i class="fa fa-chevron-circle-down"></i></span>
+                            </h5>
+                            <ul class="footer-info-list">
+                                <li>
+                                    <a href="contact-us/index.html">Contact Us</a>
+                                </li>
+                                <li>
+                                    <a href="blog/index.html">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="pages/index.html">pages</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="col-lg col-sm-12 collapsed-block" data-section-type="footer-brands">
+                        <div class="widget-inner">
+                            <h5 class="footer-info-heading">
+                                Brands
+                                <span class="expander"><i class="fa fa-chevron-circle-down"></i></span>
+                            </h5>
+                            <ul class="footer-info-list">
+                                <li>
+                                    <a href="brands/ofs/index.html">OFS</a>
+                                </li>
+                                <li>
+                                    <a href="brands/common-good/index.html">Common Good</a>
+                                </li>
+                                <li>
+                                    <a href="brands/sagaform/index.html">Sagaform</a>
+                                </li>
+                                <li><a href="brands/index.html"><strong>View All</strong></a></li>
+                            </ul>
+                        </div>
+                    </article>
+                    <hr class="footer-lines">
+                    <div class="module categories-footer" data-products-by-category-tabs="/store-directory/"
+                        data-urltemplate="sbthemes/webpage/default">
+                    </div>
+                    <div class="footer-payment col-lg-12 col-sm-12">
+                        <div class="footer-payment-icons">
+                            <svg class="footer-payment-icon">
+                                <use xlink:href="#icon-logo-american-express"></use>
+                            </svg>
+                            <svg class="footer-payment-icon">
+                                <use xlink:href="#icon-logo-discover"></use>
+                            </svg>
+                            <svg class="footer-payment-icon">
+                                <use xlink:href="#icon-logo-mastercard"></use>
+                            </svg>
+                            <svg class="footer-payment-icon">
+                                <use xlink:href="#icon-logo-paypal"></use>
+                            </svg>
+                            <svg class="footer-payment-icon">
+                                <use xlink:href="#icon-logo-visa"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <th:block th:insert = "~{/user/Fragments/Scripts/js-footer-fragment :: script}"></th:block>
+</body>
+</html>

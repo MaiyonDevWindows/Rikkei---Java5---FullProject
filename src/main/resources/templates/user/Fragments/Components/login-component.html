@@ -1,0 +1,43 @@
+<div class="container" th:fragment="loginFragment">
+    <div class="row login--row">
+        <form class="col-sm-6 form" action="https://sb-supermarket.mybigcommerce.com/login.php?action=check_login" method="post">
+            <div class="panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">Sign in</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="form-field">
+                        <label class="form-label" for="login_email">Email Address:</label>
+                        <input class="form-input" name="login_email" id="login_email" type="email">
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label" for="login_pass">Password:</label>
+                        <input class="form-input" id="login_pass" type="password" name="login_pass">
+                        <a class="forgot-password" href="login8311.html?action=reset_password">Forgot your password?</a>
+                    </div>
+                    <div class="form-actions">
+                        <input type="submit" class="button button--primary" value="Sign in">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="col-sm-6 new-customer">
+            <div class="panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">New Customer?</h2>
+                </div>
+                <div class="panel-body">
+                    <p class="new-customer-intro">Create an account with us and you&#x27;ll be able to:</p>
+                    <ul class="new-customer-fact-list">
+                        <li class="new-customer-fact">Check out faster</li>
+                        <li class="new-customer-fact">Save multiple shipping addresses</li>
+                        <li class="new-customer-fact">Access your order history</li>
+                        <li class="new-customer-fact">Track new orders</li>
+                        <li class="new-customer-fact">Save items to your Wish List</li>
+                    </ul>
+                    <a href="/register"><button class="button button--primary">Create Account</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

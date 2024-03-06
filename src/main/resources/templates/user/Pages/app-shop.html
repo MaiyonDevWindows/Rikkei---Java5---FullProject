@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <th:block th:replace = "~{/user/Layouts/user-fragment :: headFragment}"></th:block>
+    <body class="banners-effect10 default--style ">
+        <th:block th:insert = "~{/user/Layouts/user-fragment :: headerFragment}"></th:block>
+        <div class="main-body clearfix sidebar--left">
+            <div class="container">
+                <div class="row page">
+                    <th:block th:insert="~{user/Fragments/Components/shop-categories-component :: sideCategoriesFragment}"></th:block>
+                    <th:block th:insert = "~{/user/Fragments/Components/shop-products-component :: shopProductsFragment}"></th:block>
+                </div>
+            </div>
+        </div>
+        <th:block th:insert = "~{/user/Layouts/user-fragment :: footerFragment}"></th:block>
+        <th:block th:insert = "~{/user/Fragments/Scripts/js-footer-fragment :: script}"></th:block>
+    </body>
+</html>
